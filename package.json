@@ -1,0 +1,14 @@
+{
+  "name": "polygon_collision_detection",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
