@@ -5,8 +5,7 @@ const projectRootDir = path.resolve(__dirname);
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   console.log('====>', { command, mode, isSsrBuild, isPreview });
-
-  return {
+  const baseConfig = {
     resolve: {
       // 配置路径别名
       alias: {
@@ -17,16 +16,37 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
     clearScreen: false,
     envDir: path.resolve(projectRootDir, './env'),
     envPrefix: ['VITE_', 'CD_'],
-    build: {
-      target: 'modules',
-      outDir: 'dist',
-      sourcemap: false,
-      lib: {
-        entry: path.resolve(projectRootDir, './src/main.ts'),
-        name: 'polygonCD',
-        formats: ['es', 'umd'],
-        minify: 'esbuild',
-      },
-    },
   };
+
+  if (command === 'build') {
+    return {
+      ...baseConfig,
+      build: {
+        target: 'modules',
+        outDir: 'dist',
+        sourcemap: false,
+        lib: {
+          entry: path.resolve(projectRootDir, './src/main.ts'),
+          name: 'polygonCD',
+          formats: ['es', 'umd'],
+          minify: 'esbuild',
+        },
+      },
+    };
+  } else {
+    return {
+      ...baseConfig,
+      build: {
+        target: 'modules',
+        outDir: 'dist',
+        sourcemap: false,
+        lib: {
+          entry: path.resolve(projectRootDir, './src/main.ts'),
+          name: 'polygonCD',
+          formats: ['es', 'umd'],
+          minify: 'esbuild',
+        },
+      },
+    };
+  }
 });
